@@ -37,12 +37,12 @@ public class UserServiceImplementation implements UserService {
         if (user.getDateOfBirth().isBefore(LocalDate.now().minusYears(ADULT_AGE))) {
             return true;
         }
-        showWarningLogger(user," is under " + ADULT_AGE);
+        showWarningLogger(user, " is under " + ADULT_AGE);
         return false;
 
     }
 
-    private boolean isPasswordStrongEnough(String password){
+    private boolean isPasswordStrongEnough(String password) {
         Pattern pattern = Pattern.compile("(([A-Z].*[0-9]))");
         Matcher matcher = pattern.matcher(password);
         if (matcher.find() && password.length() >= MIN_PASSWORD_LENGTH) {
@@ -72,7 +72,7 @@ public class UserServiceImplementation implements UserService {
                     showSuccessLogger(user, " is log in ");
                 } else {
                     showWarningLogger(user, " is not log in, Not same password");
-                        throw new IncorrectUserPasswordException("error : password is not equals");
+                    throw new IncorrectUserPasswordException("error : password is not equals");
 
                 }
             } else {
@@ -99,6 +99,7 @@ public class UserServiceImplementation implements UserService {
     private void userNotExistLogger() {
         logger.warn("user with this login dose not exist");
     }
+
     private void showLogg(String msg) {
         logger.warn(msg);
     }
@@ -128,6 +129,7 @@ public class UserServiceImplementation implements UserService {
             }
         }
     }
+
 
 
 }
